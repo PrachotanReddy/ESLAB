@@ -1,0 +1,156 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             add128,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 4815            ldr              r0,=n1
+   12 00000002 4916            ldr              r1,=n2
+   13 00000004 6802            ldr              r2,[r0]
+   14 00000006 680B            ldr              r3,[r1]
+   15 00000008 4C15            ldr              r4,=dst
+   16 0000000A F04F 0504       mov              r5,#4
+   17 0000000E F04F 0600       mov              r6,#0
+   18 00000012 1992    up      ADDS             r2,r6
+   19 00000014 F04F 0600       mov              r6,#0
+   20 00000018 F146 0600       adc              r6,#0
+   21 0000001C 18D2            adds             r2,r3
+   22 0000001E F146 0600       adc              r6,#0
+   23 00000022 F844 2B04       str              r2,[r4],#4
+   24 00000026 F850 2F04       ldr              r2,[r0,#4]!
+   25 0000002A F851 3F04       ldr              r3,[r1,#4]!
+   26 0000002E 3D01            subs             r5,#1
+   27 00000030 D1EF            bne              up
+   28 00000032 6026            str              r6,[r4]
+   29 00000034         stop
+   30 00000034 E7FE            b                stop
+   31 00000036 00 00 00000001 
+              00000002 
+              00000003 
+              00000005 n1      dcd              1,2,3,5
+   32 00000048 00000001 
+              00000002 
+              00000003 
+              00000005 n2      dcd              1,2,3,5
+   33 00000058 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   34 00000000 00000000 
+                       dst     dcd              0
+   35 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\lab22.
+d -o.\lab22.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\
+Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\lab22.lst lab22.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab22.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file lab22.s
+   Uses
+      At line 2 in file lab22.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file lab22.s
+   Uses
+      At line 5 in file lab22.s
+      At line 9 in file lab22.s
+
+add128 00000000
+
+Symbol: add128
+   Definitions
+      At line 7 in file lab22.s
+   Uses
+      None
+Comment: add128 unused
+n1 00000038
+
+Symbol: n1
+   Definitions
+      At line 31 in file lab22.s
+   Uses
+      At line 11 in file lab22.s
+Comment: n1 used once
+n2 00000048
+
+Symbol: n2
+   Definitions
+      At line 32 in file lab22.s
+   Uses
+      At line 12 in file lab22.s
+Comment: n2 used once
+stop 00000034
+
+Symbol: stop
+   Definitions
+      At line 29 in file lab22.s
+   Uses
+      At line 30 in file lab22.s
+Comment: stop used once
+up 00000012
+
+Symbol: up
+   Definitions
+      At line 18 in file lab22.s
+   Uses
+      At line 27 in file lab22.s
+Comment: up used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+dst 00000000
+
+Symbol: dst
+   Definitions
+      At line 34 in file lab22.s
+   Uses
+      At line 15 in file lab22.s
+Comment: dst used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 33 in file lab22.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table

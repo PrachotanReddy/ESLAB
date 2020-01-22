@@ -1,0 +1,146 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0X10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 AREA             mycode,CODE,READONLY
+    7 00000000                 ENTRY
+    8 00000000                 EXPORT           Reset_Handler
+    9 00000000         Reset_Handler
+   10 00000000 4815            ldr              r0,=src
+   11 00000002 F04F 010A       mov              r1,#10
+   12 00000006 F04F 0200       mov              r2,#0
+   13 0000000A F04F 0500       mov              r5,#0
+   14 0000000E 4B13            ldr              r3,=dst
+   15 00000010 F04F 0600       mov              r6,#0
+   16 00000014 F850 4B04 
+                       lp1     ldr              r4,[r0],#4
+   17 00000018 19AD            adds             r5,r6
+   18 0000001A F04F 0600       mov              r6,#0
+   19 0000001E F146 0600       adc              r6,#0
+   20 00000022 192D            adds             r5,r4
+   21 00000024 F142 0200       adc              r2,#0
+   22 00000028 3901            subs             r1,#1
+   23 0000002A D1F3            bne              lp1
+   24 0000002C 601D            str              r5,[r3]
+   25 0000002E         STOP
+   26 0000002E E7FE            B                STOP
+   27 00000030 00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 
+              00000001 src     DCD              1,1,1,1,1,1,1,1,1,1
+   28 00000058 00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   29 00000000 00000000 
+                       dst     DCD              0
+   30 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=.\lab21.
+d -o.\lab21.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\
+Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=.\lab21.lst lab21.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab21.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file lab21.s
+   Uses
+      At line 2 in file lab21.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 9 in file lab21.s
+   Uses
+      At line 5 in file lab21.s
+      At line 8 in file lab21.s
+
+STOP 0000002E
+
+Symbol: STOP
+   Definitions
+      At line 25 in file lab21.s
+   Uses
+      At line 26 in file lab21.s
+Comment: STOP used once
+lp1 00000014
+
+Symbol: lp1
+   Definitions
+      At line 16 in file lab21.s
+   Uses
+      At line 23 in file lab21.s
+Comment: lp1 used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 6 in file lab21.s
+   Uses
+      None
+Comment: mycode unused
+src 00000030
+
+Symbol: src
+   Definitions
+      At line 27 in file lab21.s
+   Uses
+      At line 10 in file lab21.s
+Comment: src used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+dst 00000000
+
+Symbol: dst
+   Definitions
+      At line 29 in file lab21.s
+   Uses
+      At line 14 in file lab21.s
+Comment: dst used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 28 in file lab21.s
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+342 symbols in table
